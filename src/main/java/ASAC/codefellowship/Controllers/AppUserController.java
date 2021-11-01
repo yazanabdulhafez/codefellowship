@@ -60,13 +60,13 @@ public class AppUserController {
         return "login";
     }
 
-//    @GetMapping("/userprofile")
-//public String getMyProfile(Principal principal, Model model){
-//       AppUser appUser= appUserRepository.findByUsername(principal.getName());
-//        model.addAttribute("users",appUser);
-//        return "userprofile";
-//
-//    }
+    @GetMapping("/myprofile")
+public String getMyProfile(Principal principal, Model model){
+       AppUser appUser= appUserRepository.findByUsername(principal.getName());
+        model.addAttribute("users",appUser);
+        return "profile";
+
+    }
 
 @GetMapping("/users")
 public String getAllUsers(Principal principal, Model model) {

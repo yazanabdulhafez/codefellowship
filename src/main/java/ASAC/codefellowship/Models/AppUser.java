@@ -4,8 +4,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -20,7 +22,10 @@ public class AppUser implements UserDetails {
     private String lastName;
     private Date dateOfBirth;
     private String bio;
+@OneToMany(mappedBy = "appUser")
+    private List<Post> userPosts;
 
+//constructors
     public AppUser(){
 
     }
@@ -59,6 +64,14 @@ public class AppUser implements UserDetails {
 
     public String getBio() {
         return bio;
+    }
+
+    public List<Post> getUserPosts() {
+        return userPosts;
+    }
+
+    public void setUserPosts(List<Post> userPosts) {
+        this.userPosts = userPosts;
     }
 
     //override methods
