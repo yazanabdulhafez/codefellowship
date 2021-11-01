@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile</title>
+</head>
+<body>
+<header>
+    <a th:href="@{/users}">All users</a>
+    <a th:href="@{/perform_logout}">Log out</a>
+</header>
+<main>
+    <h1>this is user profile page</h1>
+
+    <div>
+        <ul th:each="user:${users}">
+            <li th:text="${user.username}"></li>
+            <li th:text="${user.firstName}"></li>
+            <li th:text="${user.lastName}"></li>
+            <li th:text="${user.dateOfBirth}"></li>
+            <li th:text="${user.bio}"></li>
+        </ul>
+    </div>
+</main>
+</body>
+</html>
