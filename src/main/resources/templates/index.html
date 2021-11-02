@@ -6,15 +6,22 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>home</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+<body style="background-color: #b5179e">
 <header>
-
+    <div th:replace="fragments/header :: nav"></div>
 </header>
-<main>
+<main >
     <h1>Welcome to Code Fellowship</h1>
-    <p>Please log in to your account or create a new account</p>
-    <button><a href="/login">Click here to login</a></button>
 
+    <div class="card bg-light mb-3" style="width: 18rem;margin:15% 40%;">
+        <div class="card-body">
+            <p class="card-text">Please log in to your account or create a new account</p>
+            <a href="/login" class="btn btn-primary">Click here to login</a>
+        </div>
+    </div>
 </main>
 </body>
 </html>

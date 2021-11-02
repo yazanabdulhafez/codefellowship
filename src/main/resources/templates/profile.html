@@ -6,11 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 <header>
-    <a th:href="@{/users}">All users</a>
-    <a th:href="@{/perform_logout}">Log out</a>
+    <h2 sec:authentication="name"></h2>
+    <div th:replace="fragments/header :: nav"></div>
 </header>
 <main>
     <h1>this is user profile page</h1>
@@ -22,6 +23,26 @@
             <li th:text="${user.lastName}"></li>
             <li th:text="${user.dateOfBirth}"></li>
             <li th:text="${user.bio}"></li>
+        </ul>
+    </div>
+
+    <div>
+    <form action="/post" method="post">
+        <label for="body">body</label>
+        <input type="text" name="body" id="body">
+        <input type="submit">
+    </form>
+    </div>
+
+    <div>
+        <h3> Your Posts : </h3>
+        <ul th:each="post : ${posts}"  style="width: 70%;">
+            <li >Post :<span th:text="${post.body}"></span><br/>
+            <li >Time :<span th:text="${post.createdAt}"></span><br/>
+
+
+            </li>
+            <br/>
         </ul>
     </div>
 </main>
