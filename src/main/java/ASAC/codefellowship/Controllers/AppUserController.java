@@ -2,7 +2,9 @@ package ASAC.codefellowship.Controllers;
 
 
 import ASAC.codefellowship.Models.AppUser;
+import ASAC.codefellowship.Models.Post;
 import ASAC.codefellowship.Repositories.AppUserRepository;
+import ASAC.codefellowship.Repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,17 +29,15 @@ public class AppUserController {
     @Autowired
     AppUserRepository appUserRepository;
 
+    @Autowired
+    PostRepository postRepository;
+
     @GetMapping("/signup")
     public String getSignUpPage(){
         return "signup";
     }
 
-//    @PostMapping("/signup")  //i must add the other things (first name ,lastname,..)
-//    public String signUpUser(@RequestParam String username, @RequestParam String password){
-//        AppUser appUser = new AppUser(username, encoder.encode(password));
-//        appUserRepository.save(appUser);
-//        return "login";
-//    }
+
     @PostMapping("/signup")
     public String signUpUser(@RequestParam String username,
                              @RequestParam String password,
@@ -47,11 +47,8 @@ public class AppUserController {
                              @RequestParam String bio){
        AppUser user= new AppUser(username,encoder.encode(password),
                firstName,lastName, Date.valueOf(dateOfBirth),bio);
-        try{
-            appUserRepository.save(user);
-        }catch (Exception exception){
-            return "error";
-        }
+       appUserRepository.save(user);
+
         return "login";
     }
 
@@ -64,6 +61,8 @@ public class AppUserController {
 public String getMyProfile(Principal principal, Model model){
        AppUser appUser= appUserRepository.findByUsername(principal.getName());
         model.addAttribute("users",appUser);
+        List<Post> posts=postRepository.findAllByAppUser(appUser);
+        model.addAttribute("posts",posts);
         return "profile";
 
     }
