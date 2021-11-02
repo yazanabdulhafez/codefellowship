@@ -1,34 +1,65 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>All users</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link type="text/css" href="style.css" rel="stylesheet">
 </head>
 <body>
 <header>
     <h2 sec:authentication="name"></h2>
     <div th:replace="fragments/header :: nav"></div>
 </header>
-<h1>
-    Users:
-</h1>
-<div class="row">
+<main>
+    <h1>
+        Users:
+    </h1>
 
-        <div th:each="user:${users}" class="card" style="width: 18rem;margin: 10px;">
-            <img class="card-img-top" th:src="@{/img/abstract-user-flat-4.svg}" alt="Card image cap">
-            <div class="card-body">
-                <h5 th:text="${user.username}" class="card-title"></h5>
-                <p th:text="${user.bio}" class="card-text"></p>
-                <a th:href="${'/users/'+user.getId}" class="btn btn-primary">show user</a>
+    <div class="row">
+        <div class="col" th:each="user:${users}">
+
+
+            <div class="card" style="width: 18rem;margin: 10px;">
+                <img class="card-img-top" th:src="@{/img/abstract-user-flat-4.svg}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 th:text="${user.username}" class="card-title"></h5>
+                    <p th:text="${user.bio}" class="card-text"></p>
+                    <a th:href="${'/users/'+user.getId}" class="btn btn-primary">show user</a>
+                </div>
+                <div class="card-body text-center" th:if="${user.getId} != ${appUser.getId}">
+                    <div th:if="!${appUser.followers.contains(user)}">
+                        <form method="post" action="/users/follow">
+                            <button style="align-items: center" type="submit" class="btn btn-primary">Follow Me!
+                            </button>
+                            <input type="hidden" name="followedUser" th:value="${user.getId}">
+                        </form>
+                    </div>
+                    <div th:if="${appUser.followers.contains(user)}">
+                        <p
+                                class="btn btn-primary"
+                                style="background-color: red; border-color: red">Following!
+                        </p>
+                        <form method="post" action="/users/unfollow">
+                            <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    style="background-color: black; border-color: black">Unfollow Me!
+                            </button>
+                            <input type="hidden" name="unfollowedUser" th:value="${user.getId}">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
-</div>
+    </div>
+
+</main>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>feed</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <h2 sec:authentication="name"></h2>
+    <div th:replace="fragments/header :: nav"></div>
+</header>
+<main class="container" >
+
+    <h1  th:each="appUser : ${appUser}">Welcome to your feed, <span th:text="${appUser.firstName}"></span>!</h1>
+
+    <div th:each="singleFollower : ${appUser.followers}">
+        <ul th:each="post : ${singleFollower.getUserPosts}" style="border-top-style: dashed; list-style-type: none">
+            <li><br><b>Created At:</b> <span th:text="${post.createdAt}">Time Stamp</span></li>
+            <li th:if="${appUser} != ${singleFollower}"><b>Author:</b> <span th:text="${singleFollower.username}"></span>
+            </li>
+            <li th:text="${post.body}">Body</li>
+            <li th:if="${appUser} != ${singleFollower}"><a th:href="'/users/' + ${singleFollower.id}">View my profile</a>
+            </li>
+        </ul>
+
+    </div>
+</main>
+</body>
+</html>

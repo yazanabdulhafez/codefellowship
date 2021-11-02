@@ -35,7 +35,7 @@ hint: this is a relationship between two pieces of data
 
 11. A user’s posts should be visible on their profile page.
 
-## How to Run
+### How to Run
 
 1. clone codefellowship repository
 2. In the terminal cd into the codefellowship directory
@@ -67,10 +67,39 @@ hint: this is a relationship between two pieces of data
 
 * When a user is logged in, the app should display the user’s username on every page (probably in the heading).
 
-## How to Run(lab 17)
+### How to Run(lab 17)
 
 1. clone codefellowship repository
 2. create adata base as the same in the proprites.
 3. In the terminal cd into the codefellowship directory
 4. Enter: ./gradlew bootRun
 5. Open web browser to: localhost:8080 and go through the app
+
+## Spring Security against User
+
+### Overview(18)
+
+In this lab we need to add the follow featuer , feed page to show the posts of other users that you follow.
+
+### Feature Tasks(18)
+
+* Ensure that users can’t perform SQL injection or HTML injection with their posts.
+
+* Allow users to follow other users. Following a user means that their posts show up in the logged-in user’s feed, where they can see what all of their followed users have posted recently.
+
+* Ensure there is some way (like a users index page) that a user can discover other users on the service.
+
+* On a user profile page that does NOT belong to the currently logged-in user, display a “Follow” button. When a user clicks that follow button, the logged-in user is now following the viewed-profile-page user.
+note: this will require a self-join on ApplicationUsers.
+
+* A user can visit a url (like /feed) to view all of the posts from the users that they follow.
+
+* Each post should have a link to the user profile of the user who wrote the post.
+
+### How to Run(lab 18)
+
+1. clone codefellowship repository
+2. create adata base as the same name in the propreites.
+3. In the terminal cd into the codefellowship directory
+4. Enter: ./gradlew bootRun
+5. Open web browser to: localhost:8080 and go through the app.

@@ -34,10 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().disable().csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/*").permitAll()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/signup*").permitAll()
-                .antMatchers("css/style.css").permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/error").permitAll()
+                .antMatchers("/style.css").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -48,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID");
     }
 }
