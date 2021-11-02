@@ -4,10 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -25,7 +22,18 @@ public class AppUser implements UserDetails {
 @OneToMany(mappedBy = "appUser")
     private List<Post> userPosts;
 
-//constructors
+    @ManyToMany
+    @JoinTable(
+            name="user_followers",
+            joinColumns = { @JoinColumn(name = "primaryUser") },
+            inverseJoinColumns = { @JoinColumn(name = "followedUser") }
+    )
+    Set<AppUser> followers;
+
+    @ManyToMany(mappedBy = "followers")
+    Set<AppUser> usersFollowedBy;
+
+    //constructors
     public AppUser(){
 
     }
@@ -72,6 +80,20 @@ public class AppUser implements UserDetails {
 
     public void setUserPosts(List<Post> userPosts) {
         this.userPosts = userPosts;
+    }
+
+    //for the followers part
+
+    public void addFollower(AppUser follower) {
+        followers.add(follower);
+    }
+
+    public void removeFollower(AppUser follower) {
+        followers.remove(follower);
+    }
+
+    public Set<AppUser> getFollowers() {
+        return followers;
     }
 
     //override methods
