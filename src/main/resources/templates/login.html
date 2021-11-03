@@ -9,13 +9,13 @@
     <link type="text/css" href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color:#AA14F0;">
 <header>
     <div th:replace="fragments/header :: nav"></div>
 
 </header>
 <main>
-    <h1>Login Page</h1>
+    <h1 style="margin: 20px;">Login Page</h1>
 <form action="/perform_login" method="post" style="width: 25rem;margin: 20px;">
     <div class="form-group">
         <label for="username">Username</label>
@@ -30,7 +30,7 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<button style="margin:20px;" type="button" class="btn btn-warning"><a href="/signup">Click here to signup</a></button>
+<button style="margin:20px;" type="button" class="btn btn-warning"><a style="text-decoration: none;" href="/signup">Click here to signup</a></button>
 </main>
 
 </body>

@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link type="text/css" href="style.css" rel="stylesheet">
 </head>
-<body>
-<header>
+<body style="background-color:#AA14F0;">
+<header style="background-color:#f600ff;display: flex;justify-content: space-between;">
     <h2 sec:authentication="name"></h2>
     <div th:replace="fragments/header :: nav"></div>
     <!--    <h1 th:text="${currentUser.username}"></h1>-->
@@ -18,15 +18,17 @@
 <main>
     <h1>this is user profile page</h1>
 
-    <div>
-        <ul th:each="user:${targetUser}">
-            <li th:text="${user.username}"></li>
-            <li th:text="${user.firstName}"></li>
-            <li th:text="${user.lastName}"></li>
-            <li th:text="${user.dateOfBirth}"></li>
-            <li th:text="${user.bio}"></li>
-        </ul>
+    <div th:each="user:${targetUser}" class="card" style="width: 18rem;margin: 10px;">
+        <img class="card-img-top" th:src="@{/img/abstract-user-flat-4.svg}" alt="Card image cap">
+        <div class="card-body">
+            <h5 th:text="${user.username}" class="card-title"></h5>
+            <p th:text="${user.firstName+' '+user.lastName}" class="card-text"></p>
+            <p th:text="${user.dateOfBirth}" class="card-text"></p>
+            <p th:text="${user.bio}" class="card-text"></p>
+
+        </div>
     </div>
+
 </main>
 </body>
 </html>

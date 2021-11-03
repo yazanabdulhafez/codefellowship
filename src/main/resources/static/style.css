@@ -1,6 +1,23 @@
 body{
-background-color: chocolate;
+background-color:#AA14F0;
+}
+
+header nav ul li a{
+color:#4ee7e0;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+header h2{
+margin-left: 20px;
 }
 
 
+main h1{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
 

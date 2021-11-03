@@ -12,6 +12,7 @@
 </head>
 <body>
 <header>
+    <h2>Sign UP</h2>
     <div th:replace="fragments/header :: nav"></div>
 </header>
 <form action="/signup" method="post" style="width: 40rem;margin: 20px;">
@@ -40,11 +41,11 @@
 
     <div class="form-group">
         <label for="dateOfBirth">dateOfBirth</label>
-        <input type="date" name="dateOfBirth" id="dateOfBirth">
+        <input style="width: 100%;" type="date" name="dateOfBirth" id="dateOfBirth">
     </div>
     <div class="form-group">
         <label for="bio">bio</label>
-        <input type="text" name="bio" id="bio">
+        <textarea style="width: 100%;" type="text" name="bio" id="bio" rows="3"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
