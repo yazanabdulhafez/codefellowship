@@ -10,18 +10,18 @@
     <link type="text/css" href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-<header>
+<body style="background-color:#AA14F0;">
+<header style="background-color:#f600ff;display: flex;justify-content: space-between;">
     <h2 sec:authentication="name"></h2>
     <div th:replace="fragments/header :: nav"></div>
 </header>
 <main >
-    <h1>Welcome to Code Fellowship</h1>
+    <h1 style="display: flex;justify-content: center;margin-top: 20px;">Welcome to Code Fellowship</h1>
 
-    <div class="card bg-light mb-3" style="width: 18rem;margin:15% 40%;">
+    <div sec:authorize="isAnonymous()"  class="card bg-light mb-3" style="width: 18rem;margin:12% 40%;background-color: #dd993bd4!important;">
         <div class="card-body">
             <p class="card-text">Please log in to your account or create a new account</p>
-            <a href="/login" class="btn btn-primary">Click here to login</a>
+            <a style="display: flex;justify-content: center;" href="/login" class="btn btn-primary">Click here to login</a>
         </div>
     </div>
 </main>

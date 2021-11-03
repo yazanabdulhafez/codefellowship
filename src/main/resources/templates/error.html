@@ -6,13 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>error page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link type="text/css" href="style.css" rel="stylesheet">
 </head>
 <body>
 <header>
-
+    <h2 sec:authentication="name"></h2>
+    <div th:replace="fragments/header :: nav"></div>
 </header>
 <main>
-    <h1>This is error page</h1>
+    <h1 style="margin-top:10%;">Sorry something Wrong happens, please log in or enter a valid data</h1>
 
 </main>
 </body>
